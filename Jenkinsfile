@@ -25,7 +25,11 @@ pipeline {
             steps {
                 bat '''
                 if not exist deploy mkdir deploy
-                xcopy /E /I /Y . deploy
+                xcopy app.py deploy /Y
+                xcopy requirements.txt deploy /Y
+                xcopy test_app.py deploy /Y
+                xcopy templates deploy\\templates /E /I /Y
+                xcopy static deploy\\static /E /I /Y
                 '''
                 echo 'Deployment simulated successfully'
             }
