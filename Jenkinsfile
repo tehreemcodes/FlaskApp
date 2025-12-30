@@ -1,17 +1,7 @@
 pipeline {
     agent any
 
-    triggers {
-        githubPush()
-    }
-
     stages {
-
-        stage('Clone Repository') {
-            steps {
-                git 'https://github.com/tehreemcodes/FlaskApp.git'
-            }
-        }
 
         stage('Install Dependencies') {
             steps {
@@ -27,7 +17,7 @@ pipeline {
 
         stage('Build Application') {
             steps {
-                echo 'Building / Preparing Flask application'
+                echo 'Preparing Flask application for deployment'
             }
         }
 
@@ -37,7 +27,7 @@ pipeline {
                 if not exist deploy mkdir deploy
                 xcopy /E /I /Y . deploy
                 '''
-                echo 'Application deployed successfully (simulated)'
+                echo 'Deployment simulated successfully'
             }
         }
     }
